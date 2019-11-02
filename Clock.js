@@ -10,7 +10,6 @@ class Clock {
 	setTime (time) {
 
 		this.time = time;
-
 	}
 
 	getTime () {
@@ -19,10 +18,8 @@ class Clock {
 	}
 
 	getHour () {
-		
-		console.log("getHour");
-		return this.getTime().getHours();
 
+		return this.getTime().getHours();
 	}
 
 	getMinute () {
@@ -36,8 +33,9 @@ class Clock {
 	}
 
 	updateTime() {
-		this.setTime(new Date());
+
 		console.log("updateTime");
+		this.setTime(new Date());
 	}
 
 	getTimeString () {

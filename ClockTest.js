@@ -13,4 +13,6 @@ console.log(clockTest.getTimeString());
 clockTest.updateTime();
 
 console.log(clockTest.getTimeString());
+
+setTimeout(clockTest.updateTime, 1000)
 }

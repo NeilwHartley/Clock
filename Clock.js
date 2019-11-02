@@ -1,6 +1,7 @@
 class Clock {
 
 	//statics
+	time = null;
 
 	constructor () {
 		this.setTime(new Date());
@@ -50,7 +51,3 @@ class Clock {
 		return timeString;
 	}
 }
-
-Clock.prototype.time = null;
-Clock.prototype.hour = null;
-

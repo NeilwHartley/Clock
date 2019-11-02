@@ -10,9 +10,11 @@ clockTest.getTimeString();
 
 console.log(clockTest.getTimeString());
 
-//clockTest.updateTime();
 
 console.log(clockTest.getTimeString());
+
+
+clockTest.updateTime();
 
 Clock.prototype.update = function () {
 	setInterval(clockTest.updateTime.bind(clockTest), 1000);
@@ -20,5 +22,4 @@ Clock.prototype.update = function () {
 
 clockTest.update();
 
-//document.body.innerHTML = clockTest.getTimeStringHTML();
 }

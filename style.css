@@ -1,6 +1,74 @@
-div {
+body {
 	font-family: verdana;
+}
+
+.hand {
+
+}
+
+#display-time {
+
 	border: solid;
 	width: 150px;
+}
 
+#clock-box {
+
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	background-color: gray;
+}
+
+#clock-face {
+
+	position: absolute;
+	display: block;
+	margin-left: 300px;
+	margin-top: 15px;
+	width: 500px;
+	height: 500px;
+	background-color: #efefef;
+	border-radius: 50%;
+}
+
+#hour-hand {
+
+	background-color: gray;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	width: 4px;
+	height: 175px;
+	z-index: 2;
+	transform-origin: top;
+	transform: rotate(0deg);
+}
+
+#minute-hand {
+
+	background-color: red;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 3px;
+	height: 175px;
+	z-index: 2;
+	transform-origin: top;
+	transform: rotate(0deg);
+}
+
+#second-hand {
+
+	background-color: blue;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 1.5px;
+	height: 200px;
+	z-index: 4;
+	transform-origin: top;
+	transform: rotate(0deg);
+	transition: transform 0s;
+	animation-timing-function: linear;
 }

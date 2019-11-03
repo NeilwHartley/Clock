@@ -1,6 +1,11 @@
 class Clock {
 
-	//statics
+	static totalDegrees = 360;
+	static hoursOnClock = 12; //12hr clock
+	static minutesInHour = 60;
+	static morning = 8;
+	static evening = 16;
+	static midday = 12;
 	time = null;
 
 	constructor () {
@@ -32,17 +37,53 @@ class Clock {
 		return this.getTime().getSeconds();
 	}
 
-	updateTime() {
+	getHourDegree () {
+
+		if (this.getHour() > Clock.midday) {
+			return (this.getHour() - Clock.midday) * (Clock.totalDegrees / Clock.hoursOnClock);
+		} else {
+			return this.getHour() * (Clock.totalDegrees / Clock.hoursOnClock);
+		}
+	}
+
+	getMinuteDegree () {
+
+		return (this.getMinute() * (Clock.totalDegrees / Clock.minutesInHour));
+	}
+
+	getSecondDegree () {
+
+		return (this.getSecond() * (Clock.totalDegrees / Clock.minutesInHour));
+	}
+
+	moveHourHand () {
+
+		document.getElementById("hourHand").style.transform = "rotate(" + this.getHourDegree() + "deg)";
+	}
+
+	moveMinuteHand () {
+
+		document.getElementById("minuteHand").style.transform = "rotate(" + this.getMinuteDegree() + "deg)";
+	}
+
+	moveSecondHand () {
+
+		document.getElementById("secondHand").style.transform = "rotate(" + this.getSecondDegree() + "deg)";
+	}
+
+	updateTime () {
 
 		this.setTime(new Date());
-		document.body.innerHTML = this.getTimeStringHTML();
 		document.body.innerHTML = this.displayClock();
 		this.nightTime();
+		this.moveHourHand();
+		this.moveMinuteHand();
+		this.moveSecondHand();
 	}
 
 	nightTime () {
 
-		if (17 < this.getHour() < 8) {
+		if (this.getHour() < Clock.morning || this.getHour() > Clock.evening) {
 			document.body.style.backgroundColor = "teal";
 		}
 	}
@@ -59,7 +100,7 @@ class Clock {
 		return timeString;
 	}
 
-	getTimeStringHTML () {
+	/* getTimeStringHTML () {
 
 		return `
 		<div id="display-time">
@@ -67,6 +108,7 @@ class Clock {
 		</div>
 		`
 	}
+	*/
 
 	displayClock () {
 
@@ -75,9 +117,9 @@ class Clock {
 		<p>Time: ${this.getHour()}:${this.getMinute()}:${this.getSecond()}</p>
 		</div>
 		<div id="clock-face">
-		<div id="hour-hand" class="hand"></div>
-		<div id="minute-hand" class="hand"></div>
-		<div id="second-hand" class="hand"></div>
+		<div id="hourHand" class="hand"></div>
+		<div id="minuteHand" class="hand"></div>
+		<div id="secondHand" class="hand"></div>
 		</div>
 		`
 	}

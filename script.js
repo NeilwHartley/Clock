@@ -1,1 +1,3 @@
-window.onload = test();
+window.onload = function () {
+	test();
+}

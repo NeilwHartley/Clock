@@ -11,15 +11,7 @@ body {
 	border: solid;
 	width: 150px;
 }
-
-#clock-box {
-
-	position: absolute;
-	width: 100px;
-	height: 100px;
-	background-color: gray;
-}
-
+	
 #clock-face {
 
 	position: absolute;
@@ -32,42 +24,42 @@ body {
 	border-radius: 50%;
 }
 
-#hour-hand {
+#hourHand {
 
 	background-color: gray;
 	position: relative;
-	top: 50%;
+	top: 15%;
 	left: 50%;
 	width: 4px;
 	height: 175px;
 	z-index: 2;
-	transform-origin: top;
-	transform: rotate(0deg);
+	transform-origin: bottom;
+	transform: rotate(10deg);
 }
 
-#minute-hand {
+#minuteHand {
 
 	background-color: red;
 	position: absolute;
-	top: 50%;
+	top: 15%;
 	left: 50%;
 	width: 3px;
 	height: 175px;
 	z-index: 2;
-	transform-origin: top;
+	transform-origin: bottom;
 	transform: rotate(0deg);
 }
 
-#second-hand {
+#secondHand {
 
 	background-color: blue;
 	position: absolute;
-	top: 50%;
+	top: 10%;
 	left: 50%;
 	width: 1.5px;
 	height: 200px;
 	z-index: 4;
-	transform-origin: top;
+	transform-origin: bottom;
 	transform: rotate(0deg);
 	transition: transform 0s;
 	animation-timing-function: linear;

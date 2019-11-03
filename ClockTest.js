@@ -17,7 +17,7 @@ console.log(clockTest.getTimeString());
 clockTest.updateTime();
 
 Clock.prototype.update = function () {
-	setInterval(clockTest.updateTime.bind(clockTest), 1000);
+	setInterval(this.updateTime.bind(this), 1000);
 }
 
 clockTest.update();

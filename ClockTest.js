@@ -1,25 +1,37 @@
 function test () {
 
-console.log("test");
+	console.log("test");
 
-var clockTest = new Clock;
+	const whenClockStateChanges = function (clock) {
 
-console.log(clockTest.time);
+		console.log("clock updated");
+		document.getElementById("hourHand").style.transform = "rotate(" + clock.getHourDegree() + "deg)";
+		document.getElementById("minuteHand").style.transform = "rotate(" + clock.getMinuteDegree() + "deg)";
+		document.getElementById("secondHand").style.transform = "rotate(" + clock.getSecondDegree() + "deg)";
+	}
 
-clockTest.getTimeString();
+	var clockTest = new Clock();
 
-console.log(clockTest.getTimeString());
+	clockTest.setUpdateCallback(whenClockStateChanges);
+
+	document.body.innerHTML = clockTest.getClockHTML();
+
+	console.log(clockTest.time);
+
+	clockTest.getTimeString();
+
+	console.log(clockTest.getTimeString());
 
 
-console.log(clockTest.getTimeString());
+	console.log(clockTest.getTimeString());
 
 
-clockTest.updateTime();
+	clockTest.updateTime();
 
-Clock.prototype.update = function () {
-	setInterval(this.updateTime.bind(this), 1000);
-}
+	Clock.prototype.update = function () {
+		setInterval(this.updateTime.bind(this), 1000);
+	}
 
-clockTest.update();
+	clockTest.update();
 
 }

@@ -7,6 +7,7 @@ class Clock {
 	static evening = 16;
 	static midday = 12;
 	time = null;
+	whenClockStateUpdates = null;
 
 	constructor () {
 		this.setTime(new Date());
@@ -15,6 +16,11 @@ class Clock {
 	setTime (time) {
 
 		this.time = time;
+	}
+
+	setUpdateCallback (callback) {
+
+		this.whenClockStateUpdates = callback;
 	}
 
 	getTime () {
@@ -58,23 +64,20 @@ class Clock {
 
 	moveHourHand () {
 
-		document.getElementById("hourHand").style.transform = "rotate(" + this.getHourDegree() + "deg)";
 	}
 
 	moveMinuteHand () {
 
-		document.getElementById("minuteHand").style.transform = "rotate(" + this.getMinuteDegree() + "deg)";
 	}
 
 	moveSecondHand () {
 
-		document.getElementById("secondHand").style.transform = "rotate(" + this.getSecondDegree() + "deg)";
 	}
 
 	updateTime () {
 
 		this.setTime(new Date());
-		document.body.innerHTML = this.displayClock();
+		this.whenClockStateUpdates(this);
 		this.nightTime();
 		this.moveHourHand();
 		this.moveMinuteHand();
@@ -110,7 +113,7 @@ class Clock {
 	}
 	*/
 
-	displayClock () {
+	getClockHTML () {
 
 		return `
 		<div id="display-time">

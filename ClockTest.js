@@ -8,11 +8,26 @@ function test () {
 		document.getElementById("hourHand").style.transform = "rotate(" + clock.getHourDegree() + "deg)";
 		document.getElementById("minuteHand").style.transform = "rotate(" + clock.getMinuteDegree() + "deg)";
 		document.getElementById("secondHand").style.transform = "rotate(" + clock.getSecondDegree() + "deg)";
+		document.getElementById("clockBox").innerHTML = "Time: " + this.getHour() + ":" + this.getMinute() + ":" + this.getSecond();
+	}
+
+	const whenNighttimeIsTrue = function (clock) {
+
+		document.body.style.backgroundColor = "teal";
+	}
+
+	whenNighttimeIsFalse = function (clock) {
+
+		document.body.style.backgroundColor = "white";
 	}
 
 	var clockTest = new Clock();
 
 	clockTest.setUpdateCallback(whenClockStateChanges);
+
+	clockTest.setNighttimeCallback(whenNighttimeIsTrue);
+
+	clockTest.setDaytimeCallback(whenNighttimeIsFalse);
 
 	document.body.innerHTML = clockTest.getClockHTML();
 

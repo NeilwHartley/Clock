@@ -8,8 +8,11 @@ class Clock {
 	static midday = 12;
 	time = null;
 	whenClockStateUpdates = null;
+	nighttime = null;
+	daytime = null;
 
 	constructor () {
+		
 		this.setTime(new Date());
 	}
 
@@ -21,6 +24,17 @@ class Clock {
 	setUpdateCallback (callback) {
 
 		this.whenClockStateUpdates = callback;
+	}
+
+
+	setNighttimeCallback (callback2) {
+
+		this.nighttime = callback2;
+	}
+
+	setDaytimeCallback (callback3BecauseJoeWillLoveThisName) {
+
+		this.daytime = callback3BecauseJoeWillLoveThisName;
 	}
 
 	getTime () {
@@ -62,34 +76,27 @@ class Clock {
 		return (this.getSecond() * (Clock.totalDegrees / Clock.minutesInHour));
 	}
 
-	moveHourHand () {
-
-	}
-
-	moveMinuteHand () {
-
-	}
-
-	moveSecondHand () {
-
-	}
-
 	updateTime () {
 
 		this.setTime(new Date());
 		this.whenClockStateUpdates(this);
-		this.nightTime();
-		this.moveHourHand();
-		this.moveMinuteHand();
-		this.moveSecondHand();
+		if (this.getHour() < Clock.morning || this.getHour() > Clock.evening) {
+			this.nighttime(this);
+
+		} else {
+
+			this.daytime(this);
+		}
 	}
 
-	nightTime () {
+	/*
+	changeColourAtNighttime () {
 
 		if (this.getHour() < Clock.morning || this.getHour() > Clock.evening) {
 			document.body.style.backgroundColor = "teal";
 		}
 	}
+*/
 
 	getTimeString () {
 
@@ -117,9 +124,9 @@ class Clock {
 
 		return `
 		<div id="display-time">
-		<p>Time: ${this.getHour()}:${this.getMinute()}:${this.getSecond()}</p>
+		<p id="clockBox"></p>
 		</div>
-		<div id="clock-face">
+		<div id="clockFace">
 		<div id="hourHand" class="hand"></div>
 		<div id="minuteHand" class="hand"></div>
 		<div id="secondHand" class="hand"></div>
